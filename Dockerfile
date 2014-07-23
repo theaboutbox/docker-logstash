@@ -7,7 +7,8 @@ RUN apt-get update
 # Install dependencies
 RUN apt-get install -yq \
     openjdk-7-jre-headless \
-    wget
+    wget \
+    gettext-base
 
 # Download version 1.4.2 of logstash
 RUN cd /tmp && \
