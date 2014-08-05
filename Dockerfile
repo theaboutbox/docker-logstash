@@ -1,4 +1,4 @@
-FROM ubuntu/trusty
+FROM ubuntu:trusty
 MAINTAINER Cameron A. Pope <cameron@theaboutbox.com>
 
 # Download latest package lists
