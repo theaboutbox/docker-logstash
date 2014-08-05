@@ -1,5 +1,5 @@
-FROM pblittle/base:0.3.0
-MAINTAINER P. Barrett Little <barrett@barrettlittle.com>
+FROM ubuntu/trusty
+MAINTAINER Cameron A. Pope <cameron@theaboutbox.com>
 
 # Download latest package lists
 RUN apt-get update
@@ -31,4 +31,4 @@ EXPOSE 9292
 EXPOSE 514
 
 # Start logstash
-ENTRYPOINT ["/app/bin/boot"]
+ENTRYPOINT ["/app/bin/run"]

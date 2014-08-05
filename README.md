@@ -1,4 +1,13 @@
-This is a logstash (1.4.2) image that is configurable to run using either the embedded elasticsearch or an elasticsearch node running in a separate container.
+This image is based on pblittle excellent logstash container, with the
+following major differences:
+
+* Config file specified explicitly via LOGSTASH_CONFIG_FILE parameter
+
+* Environment variables are substituted in the configuration file prior
+  to invoking logstash
+
+This is a logstash (1.4.2) image that is configurable to run using 
+either the embedded elasticsearch or an elasticsearch node running in a separate container.
 
 To fetch and start a container running logstash (1.4.2), elasticsearch (1.1.1) and Kibana 3 (3.0.1), simply:
 
@@ -7,7 +16,7 @@ To fetch and start a container running logstash (1.4.2), elasticsearch (1.1.1) a
 	  -p 514:514 \
 	  -p 9200:9200 \
 	  -p 9292:9292 \
-	  pblittle/docker-logstash
+	  theaboutbox/docker-logstash
 
 If you want to link to an external elasticsearch container rather than the embedded server, add a link flag with your existing elasticsearch container's name. For example, to link to a container named `elasticsearch`:
 
@@ -16,7 +25,7 @@ If you want to link to an external elasticsearch container rather than the embed
 	  -link elasticsearch:es \
 	  -p 514:514 \
 	  -p 9292:9292 \
-	  pblittle/docker-logstash
+	  theaboutbox/docker-logstash
 
 In addition to the link, if you want your elasticsearch node's `bind_host` and `port` automatically detected, you will need to set `ES_HOST` and `ES_PORT` placeholders in your `elasticsearch` definition in your logstash config file.
 
