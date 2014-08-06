@@ -3,6 +3,14 @@
 set -e
 set -x
 
+# Default to bringing up a prompt - useful for troubleshooting
+if [ "$1" == 'bash' -o "$1" == "/bin/bash" ]; then
+	exec /bin/bash
+	exit 0
+fi
+
+# Otherwise, load the passed-in config file
+LOGSTASH_CONFIG_FILE="$1"
 if [ -z "$LOGSTASH_CONFIG_FILE" ]; then
   LOGSTASH_CONFIG_FILE=/app/conf/logstash.default.conf
 fi
@@ -13,6 +21,6 @@ cat $LOGSTASH_CONFIG_FILE | envsubst > $LOGSTASH_CONFIG_SUBST
 # Fire up logstash!
 exec /opt/logstash/bin/logstash \
      agent \
-     --config $LOGSTASH_CONFIG_FILE \
+     --config $LOGSTASH_CONFIG_SUBST \
      -- \
      web
